@@ -217,6 +217,7 @@ public class StudentController {
                 String s2 = studentView.getCost2().getText();
                 
                 List<Student> dhss = new ArrayList<Student>();
+                
                 if(studentView.tuyChonTkiemDonHang() == 0){
                     
                     dhss = searchTheoNgay(s);
@@ -236,10 +237,21 @@ public class StudentController {
                 if(!dhss.isEmpty()){
                     studentView.showListStudents(dhss);
                     studentView.getMessageL().setVisible(false);
-                }else{
-                    studentView.WPNotif("Không tìm thấy dữ liệu bạn cần tìm, vui lòng nhập lại !!!");
+                   
+                }
+//                
+//                else {if(s1.equals("") && s2.equals("")){
+//                    studentView.showListStudents(dhss);
+//                    studentView.getMessageL().setVisible(false);
+//                }
+                else if(s1.isEmpty() && s2.isEmpty()){
+                      studentView.getMessageL().setVisible(false);
                 }
                 
+                else {
+                    studentView.WPNotif("Không tìm thấy dữ liệu bạn cần tìm, vui lòng nhập lại !!!");
+                }
+                    
             }
     }
     
@@ -270,12 +282,15 @@ public class StudentController {
 
         for (Student dh : ldh) {
             double gia = Double.parseDouble(dh.getCost().replace(".", ""));
-            if (gia >= gia1 && gia <= gia2) {
+            if ((gia>=gia1 && s2.equals("")) | (s1.equals("") && gia<=gia2) | (gia >= gia1 && gia <= gia2)) {
                 DhTmp.add(dh);
             }
         }
     } catch (NumberFormatException e) {
         // Xử lý ngoại lệ khi giá trị nhập vào không phải là số hợp lệ
+        this.studentDao = new StudentFunc();
+        studentView.showListStudents(this.studentDao.getListStudents());
+        studentView.getMessageL().setVisible(false);
         System.out.println("Giá nhập vào không hợp lệ: " + e.getMessage());
     }
 

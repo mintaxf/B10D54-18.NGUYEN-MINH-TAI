@@ -444,8 +444,7 @@ public class StudentView extends JFrame implements ActionListener, ListSelection
         tabbedPane.setTitleAt(0, "Thông Tin Bệnh Nhân");
         tab3.setBackground(Color.WHITE);
         tabbedPane.setTabComponentAt(0, new CustomTabComponent("image1/List.png", "Thông Tin Bệnh Nhân"));
-
-        
+       
         ImageIcon resizedGifIcon = new ImageIcon(getClass().getResource("/image1/robot5.gif"));
         Image i2 = resizedGifIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -801,12 +800,11 @@ public class StudentView extends JFrame implements ActionListener, ListSelection
         layout.putConstraint(SpringLayout.NORTH, sexlb, 210, SpringLayout.NORTH, panel);
         
 
-        // disable Edit and Delete buttons
+
         editStudentBtn.setEnabled(false);
         deleteStudentBtn.setEnabled(false);
-        // enable Add button
         addStudentBtn.setEnabled(true);
-         updateGiaField();
+        updateGiaField();
 
     }
     //public String imgname = null;
@@ -1071,12 +1069,6 @@ public class StudentView extends JFrame implements ActionListener, ListSelection
         // disable Add button
         addStudentBtn.setEnabled(false);
     }
-
-    /**
-     * lấy thông tin student
-     *
-     * @return
-     */
     
     private void updateGiaField() {
         cost1.addKeyListener(new KeyAdapter() {
